@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATmega328_Timer_Interrupt_Calculator", "ATmega328_Timer_Interrupt_Calculator.csproj", "{2679A4E6-5793-4658-BA83-D8D19518EA57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2679A4E6-5793-4658-BA83-D8D19518EA57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2679A4E6-5793-4658-BA83-D8D19518EA57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2679A4E6-5793-4658-BA83-D8D19518EA57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2679A4E6-5793-4658-BA83-D8D19518EA57}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4885F187-3B2B-4AC9-A2B8-37B69BCC7D90}
+	EndGlobalSection
+EndGlobal
