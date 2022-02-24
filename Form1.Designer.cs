@@ -39,6 +39,9 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.n_speed = new System.Windows.Forms.NumericUpDown();
             this.n_prescaler = new System.Windows.Forms.NumericUpDown();
             this.n_compare = new System.Windows.Forms.NumericUpDown();
+            this.l_s = new System.Windows.Forms.Label();
+            this.l_hz0 = new System.Windows.Forms.Label();
+            this.l_hz1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.n_time)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_frequency)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_speed)).BeginInit();
@@ -105,6 +108,7 @@ namespace ATmega328_Timer_Interrupt_Calculator
             // 
             this.n_time.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
             this.n_time.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.n_time.DecimalPlaces = 4;
             this.n_time.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.n_time.ForeColor = System.Drawing.Color.Silver;
             this.n_time.Location = new System.Drawing.Point(21, 33);
@@ -117,6 +121,7 @@ namespace ATmega328_Timer_Interrupt_Calculator
             // 
             this.n_frequency.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
             this.n_frequency.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.n_frequency.DecimalPlaces = 9;
             this.n_frequency.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.n_frequency.ForeColor = System.Drawing.Color.Silver;
             this.n_frequency.Location = new System.Drawing.Point(21, 112);
@@ -154,9 +159,19 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.n_prescaler.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.n_prescaler.ForeColor = System.Drawing.Color.Silver;
             this.n_prescaler.Location = new System.Drawing.Point(21, 276);
+            this.n_prescaler.Maximum = new decimal(new int[] {
+            1024,
+            0,
+            0,
+            0});
             this.n_prescaler.Name = "n_prescaler";
             this.n_prescaler.Size = new System.Drawing.Size(150, 32);
             this.n_prescaler.TabIndex = 8;
+            this.n_prescaler.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.n_prescaler.ValueChanged += new System.EventHandler(this.n_prescaler_ValueChanged);
             // 
             // n_compare
@@ -171,12 +186,48 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.n_compare.TabIndex = 9;
             this.n_compare.ValueChanged += new System.EventHandler(this.n_compare_ValueChanged);
             // 
+            // l_s
+            // 
+            this.l_s.AutoSize = true;
+            this.l_s.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.l_s.ForeColor = System.Drawing.Color.Silver;
+            this.l_s.Location = new System.Drawing.Point(177, 44);
+            this.l_s.Name = "l_s";
+            this.l_s.Size = new System.Drawing.Size(17, 21);
+            this.l_s.TabIndex = 10;
+            this.l_s.Text = "s";
+            // 
+            // l_hz0
+            // 
+            this.l_hz0.AutoSize = true;
+            this.l_hz0.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.l_hz0.ForeColor = System.Drawing.Color.Silver;
+            this.l_hz0.Location = new System.Drawing.Point(177, 123);
+            this.l_hz0.Name = "l_hz0";
+            this.l_hz0.Size = new System.Drawing.Size(28, 21);
+            this.l_hz0.TabIndex = 11;
+            this.l_hz0.Text = "Hz";
+            // 
+            // l_hz1
+            // 
+            this.l_hz1.AutoSize = true;
+            this.l_hz1.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.l_hz1.ForeColor = System.Drawing.Color.Silver;
+            this.l_hz1.Location = new System.Drawing.Point(177, 203);
+            this.l_hz1.Name = "l_hz1";
+            this.l_hz1.Size = new System.Drawing.Size(28, 21);
+            this.l_hz1.TabIndex = 12;
+            this.l_hz1.Text = "Hz";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(46)))));
             this.ClientSize = new System.Drawing.Size(494, 568);
+            this.Controls.Add(this.l_hz1);
+            this.Controls.Add(this.l_hz0);
+            this.Controls.Add(this.l_s);
             this.Controls.Add(this.n_compare);
             this.Controls.Add(this.n_prescaler);
             this.Controls.Add(this.n_speed);
@@ -212,6 +263,9 @@ namespace ATmega328_Timer_Interrupt_Calculator
         private System.Windows.Forms.NumericUpDown n_speed;
         private System.Windows.Forms.NumericUpDown n_prescaler;
         private System.Windows.Forms.NumericUpDown n_compare;
+        private System.Windows.Forms.Label l_s;
+        private System.Windows.Forms.Label l_hz0;
+        private System.Windows.Forms.Label l_hz1;
     }
 }
 
