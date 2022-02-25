@@ -19,10 +19,9 @@ namespace ATmega328_Timer_Interrupt_Calculator
         public decimal prescaler;
         public decimal compare;
 
-        public decimal x;
-        public decimal y;
-        public byte z;
-
+        public decimal top;
+        public decimal tc;
+        
         public Form1()
         {
             InitializeComponent();
@@ -48,93 +47,96 @@ namespace ATmega328_Timer_Interrupt_Calculator
             frequency = n_frequency.Value;
             speed = n_speed.Value;
             prescaler = n_prescaler.Value;
-            
-            do //Bis prescaler gefunden ist
+
+            bool z = false;
+            int timer = 65536;
+                        
+            do //Prescaler selection
             {
                 switch (prescaler)
                 {
                     case 1:
-                        x = speed / prescaler;  //Timer TOP
-                        y = x / frequency;  //TOP : desired Hz = Compare
+                        top = speed / prescaler;  //Timer TOP
+                        tc = top / frequency;  //Compare register
 
-                        if (x < y) //Wenn Copare > Top = Neuer größerer prescaler
+                        if (tc < top && top < timer)
                         {
-                            prescaler = 8;
+                            compare = tc;
+                            z = true; //End of loop
                         }
                         else
                         {
-                            compare = y;
-                            z = 1; //Ende der schleife
+                            prescaler = 8;
                         }
                         break;
 
                     case 8:
-                        x = speed / prescaler;  //Timer TOP
-                        y = x / frequency;  //TOP : desired Hz = Compare
+                        top = speed / prescaler;
+                        tc = top / frequency;
 
-                        if (x < y) //Wenn Copare > Top = Neuer größerer prescaler
+                        if (tc < top && top < timer)
                         {
-                            prescaler = 64;
+                            compare = tc;
+                            z = true;
                         }
                         else
                         {
-                            compare = y;
-                            z = 1; //Ende der schleife
+                            prescaler = 64;
                         }
                         break;
 
                     case 64:
-                        x = speed / prescaler;  //Timer TOP
-                        y = x / frequency;  //TOP : desired Hz = Compare
+                        top = speed / prescaler;
+                        tc = top / frequency;
 
-                        if (x < y) //Wenn Copare > Top = Neuer größerer prescaler
+                        if (tc < top && top < timer)
                         {
-                            prescaler = 256;
+                            compare = tc;
+                            z = true;
                         }
                         else
                         {
-                            compare = y;
-                            z = 1; //Ende der schleife
+                            prescaler = 256;
                         }
                         break;
 
                     case 256:
-                        x = speed / prescaler;  //Timer TOP
-                        y = x / frequency;  //TOP : desired Hz = Compare
+                        top = speed / prescaler;
+                        tc = top / frequency;
 
-                        if (x < y) //Wenn Copare > Top = Neuer größerer prescaler
+                        if (tc < top && top < timer)
                         {
-                            prescaler = 1024;
+                            compare = tc;
+                            z = true;
                         }
                         else
                         {
-                            compare = y;
-                            z = 1; //Ende der schleife
+                            prescaler = 1024;
                         }
                         break;
 
                     case 1024:
-                        x = speed / prescaler;  //Timer TOP
-                        y = x / frequency;  //TOP : desired Hz = Compare
+                        top = speed / prescaler;
+                        tc = top / frequency;
 
-                        if (x < y) //Wenn Copare > Top = Neuer größerer prescaler
+                        if (tc < top && top < timer)
                         {
-                            //ENDE KEIN PRESCALER GEFUNDEN
+                            compare = tc;
+                            z = true;
                         }
                         else
                         {
-                            compare = y;
-                            z = 1; //Ende der schleife
+                            Console.WriteLine("KeinPrescaler gefunden!");
                         }
                         break;
 
                     default:
-                        //Wenn Prescaler falsch gewählt
+                        //If wrong prescaler selected
                         prescaler = 1;
                         break;
                 }
 
-            } while (z == 0);
+            } while (z == false);
 
             return compare;
         }
@@ -148,6 +150,7 @@ namespace ATmega328_Timer_Interrupt_Calculator
         private void n_frequency_ValueChanged(object sender, EventArgs e)
         {
             n_time.Value = m_time();
+            n_compare.Value = m_compare();
         }
 
         private void n_speed_ValueChanged(object sender, EventArgs e)
@@ -157,8 +160,7 @@ namespace ATmega328_Timer_Interrupt_Calculator
 
         private void n_prescaler_ValueChanged(object sender, EventArgs e)
         {
-            decimal x;
-            x = m_compare();
+            
         }
 
         private void n_compare_ValueChanged(object sender, EventArgs e)

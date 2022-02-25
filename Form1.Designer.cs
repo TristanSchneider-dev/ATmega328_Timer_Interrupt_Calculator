@@ -181,6 +181,11 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.n_compare.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.n_compare.ForeColor = System.Drawing.Color.Silver;
             this.n_compare.Location = new System.Drawing.Point(21, 359);
+            this.n_compare.Maximum = new decimal(new int[] {
+            65536,
+            0,
+            0,
+            0});
             this.n_compare.Name = "n_compare";
             this.n_compare.Size = new System.Drawing.Size(150, 32);
             this.n_compare.TabIndex = 9;
