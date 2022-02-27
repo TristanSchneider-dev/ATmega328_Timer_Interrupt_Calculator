@@ -230,7 +230,7 @@ namespace ATmega328_Timer_Interrupt_Calculator
             // 
             this.f_buttons.Location = new System.Drawing.Point(21, 314);
             this.f_buttons.Name = "f_buttons";
-            this.f_buttons.Size = new System.Drawing.Size(386, 63);
+            this.f_buttons.Size = new System.Drawing.Size(382, 74);
             this.f_buttons.TabIndex = 18;
             // 
             // Form1
@@ -238,7 +238,7 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(46)))));
-            this.ClientSize = new System.Drawing.Size(880, 511);
+            this.ClientSize = new System.Drawing.Size(418, 511);
             this.Controls.Add(this.f_buttons);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.t_compare);
