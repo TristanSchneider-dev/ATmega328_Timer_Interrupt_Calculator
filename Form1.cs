@@ -11,11 +11,7 @@ namespace ATmega328_Timer_Interrupt_Calculator
         public decimal frequency;
         public decimal speed;
         public int prescaler;
-        public decimal compare;
-
-        public int timer = 65536;
-        public decimal top;
-        public decimal tc;
+        public int timer = 65536; //16bit timer
         
         public Form1()
         {
@@ -23,21 +19,37 @@ namespace ATmega328_Timer_Interrupt_Calculator
         }
 
         //Calc Methods
-        decimal m_time ()
+        decimal m_time () //Calculate time in s
         {
-            frequency = n_frequency.Value;
-            time = 1 / frequency;
+            if (n_frequency.Value != 0)
+            {
+                frequency = n_frequency.Value;
+                time = 1 / frequency;
+            }
+            else
+            {
+                t_compare.Text = "ERROR"; //Frequency is zero
+            }
+            
             return time;
         }
 
-        decimal m_frequency ()
+        decimal m_frequency () //Calculate frequency in Hz
         {
-            time = n_time.Value;
-            frequency = 1 / time;
+            if (n_time.Value != 0)
+            {
+                time = n_time.Value;
+                frequency = 1 / time;
+            }
+            else
+            {
+                t_compare.Text = "ERROR"; //Time is zero
+            }
+            
             return frequency;
         }
 
-        int m_prescaler()
+        int m_prescaler() //Check for avaliable prescalers
         {
             decimal period;
             decimal top;
@@ -47,9 +59,9 @@ namespace ATmega328_Timer_Interrupt_Calculator
 
             btn_remove();
 
-            period = 1 / speed; //period in ns
+            period = 1 / speed; //Period in ns
             top = time / period;
-            prescaler_min = top / timer;
+            prescaler_min = top / timer; //Smallest prescaler value
 
             if (prescaler_min > 0 && prescaler_min < 1)
             {
@@ -88,151 +100,34 @@ namespace ATmega328_Timer_Interrupt_Calculator
             }
             else
             {
-                //No prescaler found
+                t_compare.Text = "ERROR"; //No prescaler found
             }
 
             return prescaler;
         }
 
-        //decimal m_prescaler_old()
-        //{
-        //    frequency = n_frequency.Value;
-        //    speed = n_speed.Value;
-
-        //    btn_remove();
-
-        //    bool z = false;
-
-        //    do //Prescaler selection
-        //    {
-        //        switch (prescaler)
-        //        {
-        //            default:
-        //                //If wrong prescaler selected
-        //                prescaler = 1;
-        //                break;
-
-        //            case 1:
-        //                top = speed / prescaler;  //Timer TOP
-        //                tc = top / frequency;  //Compare register
-
-        //                if (tc < top && top < timer)
-        //                {
-        //                    z = true; //End of loop
-
-        //                    m_compare(prescaler);
-
-        //                    m_button(prescaler.ToString());
-        //                    m_button("8");
-        //                    m_button("64");
-        //                    m_button("256");
-        //                    m_button("1024");
-        //                }
-        //                else
-        //                {
-        //                    prescaler = 8;
-        //                }
-        //                break;
-
-        //            case 8:
-        //                top = speed / prescaler;
-        //                tc = top / frequency;
-
-        //                if (tc < top && top < timer)
-        //                {
-        //                    z = true;
-
-        //                    m_compare(prescaler);
-
-        //                    m_button(prescaler.ToString());
-        //                    m_button("64");
-        //                    m_button("256");
-        //                    m_button("1024");
-        //                }
-        //                else
-        //                {
-        //                    prescaler = 64;
-        //                }
-        //                break;
-
-        //            case 64:
-        //                top = speed / prescaler;
-        //                tc = top / frequency;
-
-        //                if (tc < top && top < timer)
-        //                {
-        //                    z = true;
-
-        //                    m_compare(prescaler);
-
-        //                    m_button(prescaler.ToString());
-        //                    m_button("256");
-        //                    m_button("1024");
-        //                }
-        //                else
-        //                {
-        //                    prescaler = 256;
-        //                }
-        //                break;
-
-        //            case 256:
-        //                top = speed / prescaler;
-        //                tc = top / frequency;
-
-        //                if (tc < top && top < timer)
-        //                {
-        //                    z = true;
-
-        //                    m_compare(prescaler);
-
-        //                    m_button(prescaler.ToString());
-        //                    m_button("1024");
-        //                }
-        //                else
-        //                {
-        //                    prescaler = 1024;
-        //                }
-        //                break;
-
-        //            case 1024:
-        //                top = speed / prescaler;
-        //                tc = top / frequency;
-
-        //                z = true;
-
-        //                m_compare(prescaler);
-
-        //                m_button(prescaler.ToString());
-
-        //                break;
-        //        }
-
-        //    } while (z == false);
-
-        //    return prescaler;
-        //}
-
-        void m_compare(int pre)
+        void m_compare(int pre) //Calculate compare value
         {
+            decimal top;
+            decimal compare;
+
             frequency = n_frequency.Value;
             speed = n_speed.Value;
 
-            top = speed / pre;  //Timer TOP
-            compare = top / frequency;  //Compare register
+            top = speed / pre; //Timer TOP
+            compare = top / frequency; //Compare register
 
-            if(timer > compare)
+            if(timer > compare) //Check if compare is bigger than timer
             {
                 t_compare.Text = compare.ToString();
             }
             else
             {
-                btn_remove();
                 t_compare.Text = "ERROR";
             }
-            
         }
 
-        public void m_button(string pre)
+        public void m_button(string pre) //Create dynamic button
         {
             Button btn = new Button();
             btn.Name = pre;
@@ -244,18 +139,15 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.f_buttons.Controls.Add(btn);
         }
 
-        public void btn_remove()
+        public void btn_remove() //Delete buttons on change
         {
-            foreach (Button btn in f_buttons.Controls)
-            {
-                btn.Visible = false;
-            }
+            f_buttons.Controls.Clear();
         }
 
-        private void Button_Click(object sender, EventArgs e)
+        private void Button_Click(object sender, EventArgs e) //Button click function
         {
             string button = ((Button)sender).Text;
-            m_compare(Convert.ToUInt16(button));
+            m_compare(Convert.ToUInt16(button)); //Recalculate prescaler if button is clicked
         }
 
         //Value Changes methods
@@ -274,6 +166,5 @@ namespace ATmega328_Timer_Interrupt_Calculator
         {
             m_prescaler();
         }
-
     }
 }

@@ -14,3 +14,4 @@ C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Debug\netcorea
 C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Debug\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.dll
 C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Debug\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.pdb
 C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Debug\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.genruntimeconfig.cache
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Debug\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.Properties.Resources.resources
