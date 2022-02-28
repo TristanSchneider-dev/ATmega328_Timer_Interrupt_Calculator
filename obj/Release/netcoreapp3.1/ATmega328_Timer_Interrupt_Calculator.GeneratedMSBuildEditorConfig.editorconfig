@@ -1,0 +1,9 @@
+is_global = true
+build_property.ApplicationManifest = 
+build_property.StartupObject = 
+build_property.ApplicationDefaultFont = 
+build_property.ApplicationHighDpiMode = 
+build_property.ApplicationUseCompatibleTextRendering = 
+build_property.ApplicationVisualStyles = 
+build_property.RootNamespace = ATmega328_Timer_Interrupt_Calculator
+build_property.ProjectDir = C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\

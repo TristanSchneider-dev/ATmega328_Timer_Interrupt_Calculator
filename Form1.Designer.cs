@@ -274,6 +274,8 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.Controls.Add(this.l_frequency);
             this.Controls.Add(this.l_time);
             this.ForeColor = System.Drawing.Color.Silver;
+            this.MaximumSize = new System.Drawing.Size(442, 470);
+            this.MinimumSize = new System.Drawing.Size(442, 470);
             this.Name = "Form1";
             this.Text = "ATmega328 Timer Interrupt Calculator";
             ((System.ComponentModel.ISupportInitialize)(this.n_time)).EndInit();

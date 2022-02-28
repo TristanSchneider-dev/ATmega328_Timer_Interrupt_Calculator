@@ -36,7 +36,7 @@ namespace ATmega328_Timer_Interrupt_Calculator
 
         decimal m_frequency () //Calculate frequency in Hz
         {
-            if (n_time.Value != 0)
+            if (n_time.Value != 0 )
             {
                 time = n_time.Value;
                 frequency = 1 / time;
@@ -46,6 +46,10 @@ namespace ATmega328_Timer_Interrupt_Calculator
                 t_compare.Text = "ERROR"; //Time is zero
             }
             
+            if (frequency > 1000000000) //Overflow fix
+            {
+                frequency = 0;
+            }
             return frequency;
         }
 
@@ -103,6 +107,8 @@ namespace ATmega328_Timer_Interrupt_Calculator
                 t_compare.Text = "ERROR"; //No prescaler found
             }
 
+            m_compare(prescaler);
+
             return prescaler;
         }
 
@@ -153,6 +159,7 @@ namespace ATmega328_Timer_Interrupt_Calculator
         //Value Changes methods
         private void n_time_ValueChanged(object sender, EventArgs e)
         {
+            
             n_frequency.Value = m_frequency();
             m_prescaler();
         }
