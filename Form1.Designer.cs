@@ -34,9 +34,6 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.l_frequency = new System.Windows.Forms.Label();
             this.l_speed = new System.Windows.Forms.Label();
             this.l_prescaler = new System.Windows.Forms.Label();
-            this.n_time = new System.Windows.Forms.NumericUpDown();
-            this.n_frequency = new System.Windows.Forms.NumericUpDown();
-            this.n_speed = new System.Windows.Forms.NumericUpDown();
             this.l_s = new System.Windows.Forms.Label();
             this.l_hz0 = new System.Windows.Forms.Label();
             this.l_hz1 = new System.Windows.Forms.Label();
@@ -45,9 +42,10 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.label1 = new System.Windows.Forms.Label();
             this.f_buttons = new System.Windows.Forms.FlowLayoutPanel();
             this.p_clock = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.n_time)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.n_frequency)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.n_speed)).BeginInit();
+            this.t_speed = new System.Windows.Forms.TextBox();
+            this.t_frequency = new System.Windows.Forms.TextBox();
+            this.t_time = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.p_clock)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,80 +92,6 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.l_prescaler.Size = new System.Drawing.Size(87, 21);
             this.l_prescaler.TabIndex = 3;
             this.l_prescaler.Text = "PRESCALER";
-            // 
-            // n_time
-            // 
-            this.n_time.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
-            this.n_time.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.n_time.DecimalPlaces = 4;
-            this.n_time.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.n_time.ForeColor = System.Drawing.Color.Silver;
-            this.n_time.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.n_time.Location = new System.Drawing.Point(22, 71);
-            this.n_time.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-            this.n_time.Name = "n_time";
-            this.n_time.Size = new System.Drawing.Size(150, 32);
-            this.n_time.TabIndex = 5;
-            this.n_time.ValueChanged += new System.EventHandler(this.n_time_ValueChanged);
-            // 
-            // n_frequency
-            // 
-            this.n_frequency.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
-            this.n_frequency.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.n_frequency.DecimalPlaces = 4;
-            this.n_frequency.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.n_frequency.ForeColor = System.Drawing.Color.Silver;
-            this.n_frequency.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.n_frequency.Location = new System.Drawing.Point(22, 138);
-            this.n_frequency.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-            this.n_frequency.Name = "n_frequency";
-            this.n_frequency.Size = new System.Drawing.Size(150, 32);
-            this.n_frequency.TabIndex = 6;
-            this.n_frequency.ValueChanged += new System.EventHandler(this.n_frequency_ValueChanged);
-            // 
-            // n_speed
-            // 
-            this.n_speed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
-            this.n_speed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.n_speed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.n_speed.ForeColor = System.Drawing.Color.Silver;
-            this.n_speed.Location = new System.Drawing.Point(22, 205);
-            this.n_speed.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-            this.n_speed.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.n_speed.Name = "n_speed";
-            this.n_speed.Size = new System.Drawing.Size(150, 32);
-            this.n_speed.TabIndex = 7;
-            this.n_speed.ThousandsSeparator = true;
-            this.n_speed.Value = new decimal(new int[] {
-            16000000,
-            0,
-            0,
-            0});
-            this.n_speed.ValueChanged += new System.EventHandler(this.n_speed_ValueChanged);
             // 
             // l_s
             // 
@@ -219,9 +143,10 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.t_compare.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.t_compare.ForeColor = System.Drawing.Color.Silver;
             this.t_compare.Location = new System.Drawing.Point(22, 375);
+            this.t_compare.MaxLength = 100;
             this.t_compare.Name = "t_compare";
             this.t_compare.ReadOnly = true;
-            this.t_compare.Size = new System.Drawing.Size(125, 32);
+            this.t_compare.Size = new System.Drawing.Size(150, 32);
             this.t_compare.TabIndex = 15;
             // 
             // label1
@@ -252,12 +177,63 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.p_clock.TabIndex = 19;
             this.p_clock.TabStop = false;
             // 
+            // t_speed
+            // 
+            this.t_speed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
+            this.t_speed.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.t_speed.ForeColor = System.Drawing.Color.Silver;
+            this.t_speed.Location = new System.Drawing.Point(22, 205);
+            this.t_speed.MaxLength = 100;
+            this.t_speed.Name = "t_speed";
+            this.t_speed.Size = new System.Drawing.Size(150, 32);
+            this.t_speed.TabIndex = 7;
+            this.t_speed.Text = "16000000";
+            this.t_speed.KeyDown += new System.Windows.Forms.KeyEventHandler(this.t_speed_KeyDown);
+            // 
+            // t_frequency
+            // 
+            this.t_frequency.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
+            this.t_frequency.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.t_frequency.ForeColor = System.Drawing.Color.Silver;
+            this.t_frequency.Location = new System.Drawing.Point(22, 138);
+            this.t_frequency.MaxLength = 100;
+            this.t_frequency.Name = "t_frequency";
+            this.t_frequency.Size = new System.Drawing.Size(150, 32);
+            this.t_frequency.TabIndex = 6;
+            this.t_frequency.KeyDown += new System.Windows.Forms.KeyEventHandler(this.t_frequency_KeyDown);
+            // 
+            // t_time
+            // 
+            this.t_time.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
+            this.t_time.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.t_time.ForeColor = System.Drawing.Color.Silver;
+            this.t_time.Location = new System.Drawing.Point(22, 71);
+            this.t_time.MaxLength = 100;
+            this.t_time.Name = "t_time";
+            this.t_time.Size = new System.Drawing.Size(150, 32);
+            this.t_time.TabIndex = 5;
+            this.t_time.KeyDown += new System.Windows.Forms.KeyEventHandler(this.t_time_KeyDown);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(287, 397);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(125, 17);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "by Tristan Schneider";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(46)))));
             this.ClientSize = new System.Drawing.Size(424, 423);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.t_time);
+            this.Controls.Add(this.t_frequency);
+            this.Controls.Add(this.t_speed);
             this.Controls.Add(this.p_clock);
             this.Controls.Add(this.f_buttons);
             this.Controls.Add(this.label1);
@@ -266,9 +242,6 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.Controls.Add(this.l_hz1);
             this.Controls.Add(this.l_hz0);
             this.Controls.Add(this.l_s);
-            this.Controls.Add(this.n_speed);
-            this.Controls.Add(this.n_frequency);
-            this.Controls.Add(this.n_time);
             this.Controls.Add(this.l_prescaler);
             this.Controls.Add(this.l_speed);
             this.Controls.Add(this.l_frequency);
@@ -278,9 +251,6 @@ namespace ATmega328_Timer_Interrupt_Calculator
             this.MinimumSize = new System.Drawing.Size(442, 470);
             this.Name = "Form1";
             this.Text = "ATmega328 Timer Interrupt Calculator";
-            ((System.ComponentModel.ISupportInitialize)(this.n_time)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.n_frequency)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.n_speed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p_clock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -293,9 +263,6 @@ namespace ATmega328_Timer_Interrupt_Calculator
         private System.Windows.Forms.Label l_frequency;
         private System.Windows.Forms.Label l_speed;
         private System.Windows.Forms.Label l_prescaler;
-        private System.Windows.Forms.NumericUpDown n_time;
-        private System.Windows.Forms.NumericUpDown n_frequency;
-        private System.Windows.Forms.NumericUpDown n_speed;
         private System.Windows.Forms.Label l_s;
         private System.Windows.Forms.Label l_hz0;
         private System.Windows.Forms.Label l_hz1;
@@ -304,6 +271,10 @@ namespace ATmega328_Timer_Interrupt_Calculator
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel f_buttons;
         private System.Windows.Forms.PictureBox p_clock;
+        private System.Windows.Forms.TextBox t_speed;
+        private System.Windows.Forms.TextBox t_frequency;
+        private System.Windows.Forms.TextBox t_time;
+        private System.Windows.Forms.Label label2;
     }
 }
 

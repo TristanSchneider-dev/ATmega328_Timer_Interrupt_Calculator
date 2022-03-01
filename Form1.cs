@@ -21,36 +21,34 @@ namespace ATmega328_Timer_Interrupt_Calculator
         //Calc Methods
         decimal m_time () //Calculate time in s
         {
-            if (n_frequency.Value != 0)
+            try
             {
-                frequency = n_frequency.Value;
+                frequency = Convert.ToDecimal(t_frequency.Text);
                 time = 1 / frequency;
             }
-            else
+            catch
             {
-                t_compare.Text = "ERROR"; //Frequency is zero
+                time = 0;
+                t_compare.Text = "ERROR";
             }
             
-            return time;
+            return Math.Round(time, 4);
         }
 
         decimal m_frequency () //Calculate frequency in Hz
         {
-            if (n_time.Value != 0 )
+            try
             {
-                time = n_time.Value;
+                time = Convert.ToDecimal(t_time.Text);
                 frequency = 1 / time;
             }
-            else
-            {
-                t_compare.Text = "ERROR"; //Time is zero
-            }
-            
-            if (frequency > 1000000000) //Overflow fix
+            catch
             {
                 frequency = 0;
+                t_compare.Text = "ERROR";
             }
-            return frequency;
+
+            return Math.Round(frequency, 4);
         }
 
         int m_prescaler() //Check for avaliable prescalers
@@ -58,14 +56,25 @@ namespace ATmega328_Timer_Interrupt_Calculator
             decimal period;
             decimal top;
             decimal prescaler_min;
-            speed = n_speed.Value;
-            time = n_time.Value;
-
+            bool pre_found = false;
+            
             btn_remove();
 
-            period = 1 / speed; //Period in ns
-            top = time / period;
-            prescaler_min = top / timer; //Smallest prescaler value
+            try
+            {
+                speed = Convert.ToDecimal(t_speed.Text);
+                time = Convert.ToDecimal(t_time.Text);
+
+                period = 1 / speed; //Period in ns
+                top = time / period;
+                prescaler_min = top / timer; //Smallest prescaler value
+
+                pre_found = true;
+            }
+            catch
+            {
+                prescaler_min = 0;
+            }
 
             if (prescaler_min > 0 && prescaler_min < 1)
             {
@@ -105,10 +114,14 @@ namespace ATmega328_Timer_Interrupt_Calculator
             else
             {
                 t_compare.Text = "ERROR"; //No prescaler found
+                prescaler = 0;
             }
 
-            m_compare(prescaler);
-
+            if(pre_found == true && prescaler_min != 0)
+            {
+                m_compare(prescaler);
+            }
+            
             return prescaler;
         }
 
@@ -117,15 +130,23 @@ namespace ATmega328_Timer_Interrupt_Calculator
             decimal top;
             decimal compare;
 
-            frequency = n_frequency.Value;
-            speed = n_speed.Value;
-
-            top = speed / pre; //Timer TOP
-            compare = top / frequency; //Compare register
-
-            if(timer > compare) //Check if compare is bigger than timer
+            try
             {
-                t_compare.Text = compare.ToString();
+                frequency = Convert.ToDecimal(t_frequency.Text);
+                speed = Convert.ToDecimal(t_speed.Text);
+
+                top = speed / pre; //Timer TOP
+                compare = top / frequency; //Compare register
+            }
+            catch
+            {
+                compare = 0;
+            }
+            
+
+            if (timer > compare && compare!= 0) //Check if compare is bigger than timer
+            {
+                t_compare.Text = Math.Round(compare, 4).ToString();
             }
             else
             {
@@ -157,21 +178,30 @@ namespace ATmega328_Timer_Interrupt_Calculator
         }
 
         //Value Changes methods
-        private void n_time_ValueChanged(object sender, EventArgs e)
+        private void t_time_KeyDown(object sender, KeyEventArgs e)
         {
-            
-            n_frequency.Value = m_frequency();
-            m_prescaler();
+            if (e.KeyValue == 13)
+            {
+                t_frequency.Text = m_frequency().ToString();
+                m_prescaler();
+            }
         }
 
-        private void n_frequency_ValueChanged(object sender, EventArgs e)
+        private void t_frequency_KeyDown(object sender, KeyEventArgs e)
         {
-            n_time.Value = m_time();
+            if (e.KeyValue == 13)
+            {
+                t_time.Text = m_time().ToString();
+                m_prescaler();
+            }
         }
 
-        private void n_speed_ValueChanged(object sender, EventArgs e)
+        private void t_speed_KeyDown(object sender, KeyEventArgs e)
         {
-            m_prescaler();
+            if (e.KeyValue == 13)
+            {
+                m_prescaler();
+            }
         }
     }
 }

@@ -1,0 +1,17 @@
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\bin\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.exe
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\bin\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.deps.json
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\bin\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.runtimeconfig.json
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\bin\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.runtimeconfig.dev.json
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\bin\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.dll
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\bin\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.pdb
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.csproj.AssemblyReference.cache
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.Form1.resources
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.Properties.Resources.resources
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.csproj.GenerateResource.cache
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.AssemblyInfoInputs.cache
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.AssemblyInfo.cs
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.csproj.CoreCompileInputs.cache
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.dll
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.pdb
+C:\Users\Tristan\Desktop\ATmega328_Timer_Interrupt_Calculator\obj\Release\netcoreapp3.1\ATmega328_Timer_Interrupt_Calculator.genruntimeconfig.cache
