@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "ATmega328_Timer_Interrupt_Calculator/1.0.0": {
+        "runtime": {
+          "ATmega328_Timer_Interrupt_Calculator.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ATmega328_Timer_Interrupt_Calculator/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
